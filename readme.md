@@ -1,6 +1,13 @@
 ### Instructions:
-- Add DrawLine3D.gd to the Godot [AutoLoad list](http://docs.godotengine.org/en/3.0/getting_started/step_by_step/singletons_autoload.html)
-- Call `DrawLine3D.DrawLine`, `DrawLine3D.DrawRay`, or `DrawLine3D.DrawCube` from any script
+- Add DrawLine3D.gd to the Godot [AutoLoad list](http://docs.godotengine.org/en/3.0/getting_started/step_by_step/singletons_autoload.html)  
+- Call `DrawLine3D.DrawLine`, `DrawLine3D.DrawRay`, or `DrawLine3D.DrawCube` from any script  
+OR
+- Add an instance of the `DrawLine3D` to the scene:  
+```
+var LineDrawer = preload("res://DrawLine3D.gd").new() #In 'global' scope
+add_child(LineDrawer) #At some point before calling and of the draw function e.g. in '_ready()'
+```
+- Call `LineDrawer.DrawLine`, `LineDrawer.DrawRay`, or `LineDrawer.DrawCube` from the script that created the `DrawLine3D` node
 
 `DrawLine` parameters: start point, end point, color, time (optional)  
 `DrawRay` parameters: start point, velocity (direction and magnitude), color, time (optional)  
