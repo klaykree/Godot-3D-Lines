@@ -6,7 +6,8 @@ OR
 
 - Add an instance of the `DrawLine3D` to the scene:  
 ```
-var LineDrawer = preload("res://DrawLine3D.gd").new() #In 'global' scope
+var LineDrawer = preload("res://DrawLine3D.gd").new() #In 'global' scope  
+...
 add_child(LineDrawer) #At some point before calling and of the draw function e.g. in '_ready()'
 ```
 - Call `LineDrawer.DrawLine`, `LineDrawer.DrawRay`, or `LineDrawer.DrawCube` from the script that created the `DrawLine3D` node
