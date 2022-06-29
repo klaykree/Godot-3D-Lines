@@ -1,16 +1,24 @@
 extends Node2D
 
+
 class Line:
 	var Start
 	var End
 	var LineColor
 	var Time
+	var Thickness
 	
-	func _init(Start, End, LineColor, Time):
+	
+	func _init(Start, End, LineColor, Time, Thickness):
+		if not int(typeof(Time)) == 2 and not int(typeof(Time)) == 3:
+			Time = 0.0
+		
+		
 		self.Start = Start
 		self.End = End
 		self.LineColor = LineColor
 		self.Time = Time
+		self.Thickness = Thickness
 
 var Lines = []
 var RemovedLine = false
@@ -36,7 +44,7 @@ func _draw():
 			Cam.is_position_behind(Lines[i].End)):
 			continue
 		
-		draw_line(ScreenPointStart, ScreenPointEnd, Lines[i].LineColor)
+		draw_line(ScreenPointStart, ScreenPointEnd, Lines[i].LineColor, Lines[i].Thickness)
 	
 	#Remove lines that have timed out
 	var i = Lines.size() - 1
@@ -45,12 +53,19 @@ func _draw():
 			Lines.remove(i)
 			RemovedLine = true
 		i -= 1
+		
+func ForceRemoveLines():
+	var i = Lines.size() - 1
+	while (i >= 0):
+		Lines.remove(i)
+		RemovedLine = true
+		i -= 1
 
-func DrawLine(Start, End, LineColor, Time = 0.0):
-	Lines.append(Line.new(Start, End, LineColor, Time))
+func DrawLine(Start, End, LineColor, Time = 0.0, Thickness = 1):
+	Lines.append(Line.new(Start, End, LineColor, Time, Thickness))
 
-func DrawRay(Start, Ray, LineColor, Time = 0.0):
-	Lines.append(Line.new(Start, Start + Ray, LineColor, Time))
+func DrawRay(Start, Ray, LineColor, Time = 0.0, Thickness = 1):
+	Lines.append(Line.new(Start, Start + Ray, LineColor, Time, Thickness))
 
 func DrawCube(Center, HalfExtents, LineColor, Time = 0.0):
 	#Start at the 'top left'
