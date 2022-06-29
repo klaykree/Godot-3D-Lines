@@ -64,8 +64,8 @@ func ForceRemoveLines():
 func DrawLine(Start, End, LineColor, Time = 0.0, Thickness = 1):
 	Lines.append(Line.new(Start, End, LineColor, Time, Thickness))
 
-func DrawRay(Start, Ray, LineColor, Time = 0.0):
-	Lines.append(Line.new(Start, Start + Ray, LineColor, Time, self.Thickness))
+func DrawRay(Start, Ray, LineColor, Time = 0.0, Thickness = 1):
+	Lines.append(Line.new(Start, Start + Ray, LineColor, Time, Thickness))
 
 func DrawCube(Center, HalfExtents, LineColor, Time = 0.0):
 	#Start at the 'top left'
